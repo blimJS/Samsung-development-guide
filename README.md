@@ -1,1 +1,1 @@
-# Samsung-development-guide
+# Samsung Development Guide for Web Apps
