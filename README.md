@@ -47,6 +47,19 @@ On Samsung UHD TV, the standard of app resolution is 1920x1080px and the aspect 
 ####APIs
 Information about the APIs available [here](https://www.samsungdforum.com/TizenApiGuide/).
 
+####Browser User-Agent String Format
+
+| Year | UA String |
+| :--: | :------- |
+| 2015 | Mozilla/5.0 (SMART-TV; Linux; Tizen 2.3) AppleWebkit/538.1 (KHTML, like Gecko) SamsungBrowser/1.0 TV Safari/538.1 |
+| 2014 | Mozilla/5.0 (SMART-TV; X11; Linux armv7l) AppleWebkit/537.42 (KHTML, like Gecko) Safari/537.42 |
+| 2013 | Mozilla/5.0 (SMART-TV;X11; Linux i686) AppleWebkit/535.20+ (KHTML, like Gecko) Version/5.0 Safari/535.20+ |
+| 2012 | Mozilla/5.0 (SMART-TV; X11; Linux i686) AppleWebKit/534.7 (KHTML, like Gecko) Version/5.0 Safari/534.7 |
+| 2011 | Mozilla/5.0 (SmartHub; SMART-TV; U; Linux/SmartTV) AppleWebKit/531.2 (KHTML, like Gecko) Web Browser/1.0 SmartTV Safari/531.2+ |
+
+@source: [https://github.com/ruiposse/smart-tv-app-dev-guidelines](https://github.com/ruiposse/smart-tv-app-dev-guidelines)
+@source: [http://developer.samsung.com/technical-doc/view.do?v=T000000203](http://developer.samsung.com/technical-doc/view.do?v=T000000203)
+
 ###App Development
 
 ####Registering Remote Controller Key
