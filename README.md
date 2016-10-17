@@ -60,7 +60,7 @@ tizen.tvinputdevice.registerKey(KeyName);
 Getting supported keys:
 ```javascript
 
-value = tizen.tvinputdevice.getSupportedKeys();
+var value = tizen.tvinputdevice.getSupportedKeys();
 console.log(value);
 ```
 
@@ -70,16 +70,17 @@ Using key codes requires the following privilege on the config.xml file.
 ```
 
 [TVInputDevice API.](https://www.samsungdforum.com/tizenapiguide/tizen3331/index.html)
+
 [More on _privileges_ here.](https://www.samsungdforum.com/TizenGuide/tizen3431/index.html)
 
 ####APIs for VOD Service App
-1. There are two ways to play VODs on an app. One way is using video tag which is a HTML5 standard element. And another way is using webapis.avplay which is product APIs supported by Samsung Tizen TV. The followings are explanations about two ways and other functions to helpfully use in VODs service apps.
+1. There are two ways to play VODs on an app. One way is using the video tag, which is an HTML5 standard element. And the other way is by using __webapis.avplay__ which is an API supported by Samsung Tizen TV. More details bellow:
 
-2.1 __Video Tag__: Video tag makes VODs playing easy by a HTML5 standard element. If you can enough develop by using only it, we recommend using it rather than webapis.avplay
+  1.1. __Video Tag__: Video tag makes VODs playing easy by a HTML5 standard element. If you can enough develop by using only it, we recommend using it rather than webapis.avplay
 
-2.2 __webapis.avplay__: The following is the list to be difficult or not supported by video tag. When you use these technologies, you can use webapi.avplay.
+  1.2. __webapis.avplay__: The following is the list to be difficult or not supported by video tag. When you use these technologies, you can use webapi.avplay.
 
-*DRM(Digital Rights Management)
+* DRM(Digital Rights Management)
 * HLS(HTTP Live Streaming)
 * DASH(Dynamic Adaptive Streaming over HTTP)
 * Smooth Streaming
