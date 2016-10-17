@@ -39,7 +39,7 @@ Samsung Smart TV provides a user experience that differs completely from that of
 * TV is used by more than one person.
 * Simplicity, Clarity, User Control, ConsistencyFeedback, Feedback and Aesthetic Considerations should be taken into consideration when developing the app.
 
-> [More about UI/UX Guidelines. ](https://www.samsungdforum.com/TizenUxGuide/)
+> [More on UI/UX Guidelines. ](https://www.samsungdforum.com/TizenUxGuide/)
 
 ####App Resolution
 On Samsung UHD TV, the standard of app resolution is 1920x1080px and the aspect ratio is 16:9. (In case of Samsung FHD TV, it is 1280x720px.) Even if the resolution is different from the standard, the aspect ratio should be kept. Only if you keep the ratio, whitespace and scrollbars will not appear on a screen when the app is scaled up or down.
@@ -89,6 +89,82 @@ Using key codes requires the following privilege on the config.xml file.
 
 > [More on AVPlay API](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
 
-> [Guide Overview PDF](https://www.samsungdforum.com/guide_static/tizenoverviewguide/_downloads/Essentials_of_Developing_Tizen_Web_Application_EN_1_4(1).pdf)
 
-... in progress...
+> [Official Guide Overview PDF](https://www.samsungdforum.com/guide_static/tizenoverviewguide/_downloads/Essentials_of_Developing_Tizen_Web_Application_EN_1_4(1).pdf)
+
+###AVPlay API
+
+####AVPlay Object Lifecycle
+
+![alt text][cycle]
+[cycle]: https://www.samsungdforum.com/guide_static/tizenguide/_images/AVPlay_state.jpg "AVPlay Object Lifecycle"
+
+####Adaptive Streaming
+AVPlay module of Samsung Tizen TV supports adaptive streaming playing. DASH, HLS, Smooth Streaming are supported in Samsung Tizen TV. It enables user to change bitrate during playback.
+
+The adaptive streaming engine needs to be specified when __open()__ API is called. Based on media file extension name, adaptive streaming engine is adjusted.
+
+__Smooth Streaming__
+.ism/Manifest
+
+__DASH__
+.xml
+.mpd
+
+__HLS__
+.m3u8
+
+__Widevine__
+.wvm
+.vob
+
+####Example of object initialization (Call order is very important.)
+
+```javascript
+videoPlay: function (url) {
+    var listener = {
+        onbufferingstart: function () {
+            console.log("Buffering start.");
+        },
+        onbufferingprogress: function (percent) {
+            console.log("Buffering progress data : " + percent);
+        },
+        onbufferingcomplete: function () {
+            console.log("Buffering complete.");
+        },
+        oncurrentplaytime: function (currentTime) {
+            console.log("Current playtime: " + currentTime);
+        },
+        onevent: function (eventType, eventData) {
+            console.log("event type: " + eventType + ", data: " + eventData);
+        },
+        ondrmevent: function (drmEvent, drmData) {
+            console.log("DRM callback: " + drmEvent + ", data: " + drmData);
+        },
+        onstreamcompleted: function () {
+            console.log("Stream Completed");
+            webapis.avplay.stop();
+        },
+        onerror: function (eventType) {
+            console.log("event type error : " + eventType);
+        }
+    };
+
+    webapis.avplay.open(url);
+    webapis.avplay.setDisplayRect(0, 0, 1920, 1080);
+    webapis.avplay.setListener(listener);
+
+    var drmParam = {
+       DeleteLicenseAfterUse : true
+	  };
+
+	  //drmParam.LicenseServer = "license server url to play content";
+	  //drmParam.CustomData = "Custom Data to play content";
+	  webapis.avplay.setDrm("PLAYREADY", "SetProperties", JSON.stringify(drmParam));
+
+    webapis.avplay.prepare();
+    webapis.avplay.play();
+}
+```
+
+> [AVPlay Official Guide](https://www.samsungdforum.com/TizenGuide/tizen3451/index.html)
