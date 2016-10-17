@@ -168,3 +168,53 @@ videoPlay: function (url) {
 ```
 
 > [AVPlay Official Guide](https://www.samsungdforum.com/TizenGuide/tizen3451/index.html)
+
+###CLI Tizen SDK
+
+__Export SDK path__
+```bash
+export PATH=$PATH:/Users/keiverh/tizen-sdk/tools/ide/bin
+```
+
+__Setup global profile__
+```bash
+tizen cli-config -g default.profiles.path=/Users/keiverh/workspace/.metadata/.plugins/org.tizen.common.sign/profiles.xml
+```
+
+__List platforms and templates__
+```bash
+tizen list web-project
+```
+
+__Create project__
+```bash
+tizen create web-project -p  tv-2.4 -t WebBasicapplication -n blimcli -- /Users/keiverh/workspace
+```
+
+__Build package__
+```bash
+tizen build-web -- ~/workspace/blimcli
+```
+
+__Package app__
+```bash
+tizen package --type wgt --sign dev -- /Users/keiverh/workspace/blimcli/.buildResult
+```
+
+__Install package__
+```bash
+tizen install --target emulator-26101 --name blimcli.wgt -- /Users/keiverh/workspace/blimcli/.buildResult
+```
+___
+> ###Online Resources
+>- [App Structure](https://www.samsungdforum.com/TizenOverview#contents)
+>- [Platform Features](https://www.samsungdforum.com/Tizen/Spec#GeneralFeatures)
+>- [W3C/HTML5 API Reference](https://www.samsungdforum.com/TizenApiGuide/tizen851/index.html)
+>- [Setting Project Properties ](https://developer.tizen.org/ko/development/getting-started/web-application/application-development-process/setting-project-properties?langredirect=1#set_widget)
+>- [Examples on GitHub](https://github.com/Samsung/TizenTVApps)
+>- [APIs Reference](https://developer.tizen.org/development/api-references/web-application)
+>- [AVPlay Reference](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
+>- [Caph - Focus handling for Angular and jQuery](https://www.samsungdforum.com/AddLibrary/CaphSdkDownload)
+>- [App Distribution Guide](http://www.samsungdforum.com/Support/Distribution)
+>- [CLI Dev Tools](https://developer.tizen.org/development/tools/web-tools/command-line-interface)
+>- [Tizen Key Codes](https://www.samsungdforum.com/TizenGuide/tizen3551/index.html)
