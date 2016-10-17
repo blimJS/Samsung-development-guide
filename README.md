@@ -181,6 +181,8 @@ __Setup global profile__
 tizen cli-config -g default.profiles.path=/Users/keiverh/workspace/.metadata/.plugins/org.tizen.common.sign/profiles.xml
 ```
 
+> This profile is created using the Tizen IDE. It identifies the developer and distributor certificate.
+
 __List platforms and templates__
 ```bash
 tizen list web-project
