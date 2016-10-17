@@ -155,12 +155,12 @@ videoPlay: function (url) {
     webapis.avplay.setListener(listener);
 
     var drmParam = {
-       DeleteLicenseAfterUse : true
-	  };
+      DeleteLicenseAfterUse : true
+    };
 
-	  //drmParam.LicenseServer = "license server url to play content";
-	  //drmParam.CustomData = "Custom Data to play content";
-	  webapis.avplay.setDrm("PLAYREADY", "SetProperties", JSON.stringify(drmParam));
+    //drmParam.LicenseServer = "license server url to play content";
+    //drmParam.CustomData = "Custom Data to play content";
+    webapis.avplay.setDrm("PLAYREADY", "SetProperties", JSON.stringify(drmParam));
 
     webapis.avplay.prepare();
     webapis.avplay.play();
