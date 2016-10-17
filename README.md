@@ -14,6 +14,8 @@ To develop Tizen TV web apps, you need to install a SDK. You can download a SDK 
 
 To use a GPU accelerator you should install Intel HAXM(Hardware Accelerated Execution), otherwise an emulator will not work properly. During installing a SDK, Intel HAXM should be installed automatically. In case of any errors you can install manually the following file: [HAXM](https://www.samsungdforum.com/guide_static/tizenoverviewguide/_downloads/IntelHaxmTizen_mac.zip).
 
+> The HAXM driver is automatically installed with the IDE, only install it if the emulator does not work.
+
 Emulator runs on a virtual machine (QEMU), none of these are supported (and the Emulator will complain/not work if they are running on the host computer):
 	* Virtual Box
 	* VMWare
@@ -234,3 +236,20 @@ ___
 >- [App Distribution Guide](http://www.samsungdforum.com/Support/Distribution)
 >- [CLI Dev Tools](https://developer.tizen.org/development/tools/web-tools/command-line-interface)
 >- [Tizen Key Codes](https://www.samsungdforum.com/TizenGuide/tizen3551/index.html)
+>- [Developing for Tizen TV - Article](http://clearbridgemobile.com/lessons-learned-developing-for-tizen-tv/)
+
+
+####Caph
+
+CAPH is a Web UI framework for TVs, it has these modules:
+
+- Key Navigation
+- Scrollable List and Grid
+- UI Components : Button, Radio Button, Toggle Button, Checkbox, Input, Dialog, Context Menu, Dropdown Menu
+- Touch feature : Pan, Tap and Double Tap. (from CAPH 3.1)
+
+Helps developers handle user input from four directional keys on the remote and maximizes the usage of the GPU, since TV devices generally have a far more powerful GPU than CPU.
+
+> It is not open source and only has versions for jQuery and Angular 1.x.
+
+[Caph Documentation](https://www.samsungdforum.com/caphdocs/)
