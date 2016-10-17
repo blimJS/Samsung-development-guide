@@ -58,6 +58,7 @@ Information about the APIs available [here](https://www.samsungdforum.com/TizenA
 | 2011 | Mozilla/5.0 (SmartHub; SMART-TV; U; Linux/SmartTV) AppleWebKit/531.2 (KHTML, like Gecko) Web Browser/1.0 SmartTV Safari/531.2+ |
 
 @source: [https://github.com/ruiposse/smart-tv-app-dev-guidelines](https://github.com/ruiposse/smart-tv-app-dev-guidelines)
+
 @source: [http://developer.samsung.com/technical-doc/view.do?v=T000000203](http://developer.samsung.com/technical-doc/view.do?v=T000000203)
 
 ###App Development
