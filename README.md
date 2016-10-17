@@ -39,7 +39,7 @@ Samsung Smart TV provides a user experience that differs completely from that of
 * TV is used by more than one person.
 * Simplicity, Clarity, User Control, ConsistencyFeedback, Feedback and Aesthetic Considerations should be taken into consideration when developing the app.
 
-[More here. ](https://www.samsungdforum.com/TizenUxGuide/)
+> [More about UI/UX Guidelines. ](https://www.samsungdforum.com/TizenUxGuide/)
 
 ####App Resolution
 On Samsung UHD TV, the standard of app resolution is 1920x1080px and the aspect ratio is 16:9. (In case of Samsung FHD TV, it is 1280x720px.) Even if the resolution is different from the standard, the aspect ratio should be kept. Only if you keep the ratio, whitespace and scrollbars will not appear on a screen when the app is scaled up or down.
@@ -69,9 +69,9 @@ Using key codes requires the following privilege on the config.xml file.
 <tizen:privilege name='http://tizen.org/privilege/tv.inputdevice'/>
 ```
 
-[TVInputDevice API.](https://www.samsungdforum.com/tizenapiguide/tizen3331/index.html)
+> [More on TVInputDevice API.](https://www.samsungdforum.com/tizenapiguide/tizen3331/index.html)
 
-[More on _privileges_ here.](https://www.samsungdforum.com/TizenGuide/tizen3431/index.html)
+> [More on _privileges_.](https://www.samsungdforum.com/TizenGuide/tizen3431/index.html)
 
 ####APIs for VOD Service App
 1. There are two ways to play VODs on an app. One way is using the video tag, which is an HTML5 standard element. And the other way is by using __webapis.avplay__ which is an API supported by Samsung Tizen TV. More details bellow:
@@ -87,8 +87,8 @@ Using key codes requires the following privilege on the config.xml file.
 * Adaptive Streaming
 * 3D Contents, Closed Caption etc…
 
-[AVPlay API](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
+> [More on AVPlay API](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
 
-[Guide Overview PDF](https://www.samsungdforum.com/guide_static/tizenoverviewguide/_downloads/Essentials_of_Developing_Tizen_Web_Application_EN_1_4(1).pdf)
+> [Guide Overview PDF](https://www.samsungdforum.com/guide_static/tizenoverviewguide/_downloads/Essentials_of_Developing_Tizen_Web_Application_EN_1_4(1).pdf)
 
 ... in progress...
