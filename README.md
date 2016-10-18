@@ -103,9 +103,8 @@ Using key codes requires the following privilege on the config.xml file.
 * Adaptive Streaming
 * 3D Contents, Closed Caption etc…
 
-> [More on AVPlay API](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
-
-
+> [AVPlay API Reference](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
+> [Sample Code](https://github.com/SamsungDForum/PlayerAVPlayDRM)
 > [Official Guide Overview PDF](https://www.samsungdforum.com/guide_static/tizenoverviewguide/_downloads/Essentials_of_Developing_Tizen_Web_Application_EN_1_4(1).pdf)
 
 ###AVPlay API
