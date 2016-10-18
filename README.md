@@ -280,6 +280,6 @@ CAPH is a Web UI framework for TVs, it has these modules:
 
 Helps developers handle user input from four directional keys on the remote and maximizes the usage of the GPU, since TV devices generally have a far more powerful GPU than CPU.
 
-> It is not open source and only has versions for jQuery and Angular 1.x.
+> Problems: It is not open source and only has versions for jQuery and Angular 1.x.
 
 [Caph Documentation](https://www.samsungdforum.com/caphdocs/)
