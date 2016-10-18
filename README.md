@@ -183,7 +183,37 @@ videoPlay: function (url) {
 }
 ```
 
-> [AVPlay Official Guide](https://www.samsungdforum.com/TizenGuide/tizen3451/index.html)
+To adjust the properties of the streaming you can use __webapis.avplay.setStreamingProperty()__.
+
+```javascript
+webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", params);
+```
+
+This method should be called only on "IDLE" state.
+
+To configure DRM playback, the method __webapis.avplay.setDrm()__ can be used.
+
+This method updates DRM information, such as SetProperties etc. It changes the DRM mode, and runs the Control Feature. Every DRM has difference between AVPlayDrmOperation and jsonParam.
+
+```javascript
+var params = {
+  LicenseServer: 'URL TO LICENSE SERVER',
+  DeleteLicenseAfterUse: true
+};
+
+try {
+    webapis.avplay.setDrm("PLAYREADY", "SetProperties", JSON.stringify(params));
+} catch (e) {
+    //Error
+}
+```
+
+This method should be called on these states - "IDLE" and "PAUSED".
+
+
+>[setStreamingProperty()](https://www.samsungdforum.com/TizenApiGuide/tizen3001/index.html#AVPlay-AVPlayManager-setStreamingProperty)
+
+>[AVPlay Official Guide](https://www.samsungdforum.com/TizenGuide/tizen3451/index.html)
 
 ###CLI Tizen SDK
 
