@@ -27,6 +27,8 @@ All apps must be signed with an author certificate. It is used to identify an ap
 _Follow this guide to generate the certificate:_
 [https://www.samsungdforum.com/TizenGuide/tizen3531/index.html](https://www.samsungdforum.com/TizenGuide/tizen3531/index.html)
 
+[Certificate Guide(PDF)](resources/CertificateGuide.pdf)
+
 After creating the author certificate, be careful not to lose it. This is the unique proof for certifying app developer. If you lose it, you can’t version up your app.
 
 ####UI/UX Requirements
@@ -366,3 +368,54 @@ These privileges will be used when configuring the app on the config.xml file.
 |http://tizen.org/privilege/fullscreen | public |Allows the application to display in full-screen mode using the FullScreen API (Mozilla). |
 
 > [Privilege Reference](https://www.samsungdforum.com/TizenGuide/tizen3431/index.html)
+
+###Application Configuration File
+Each application developed for Tizen will require a configuration file (config.xml) on the root path of the app.
+
+Example:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://www.blim.com" version="1.0.0" viewmodes="maximized">
+    <tizen:allow-navigation>*</tizen:allow-navigation>
+    <tizen:application id="NgUSbxuJwx.blim" package="NgUSbxuJwx" required_version="2.3"/>
+    <content src="dist/index.html"/>
+    <tizen:content-security-policy>*</tizen:content-security-policy>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <feature name="http://www.samsungdforum.com/feature/Mouse"/>
+    <feature name="http://tizen.org/privilege/application.read" required="true"/>
+    <icon src="icon.jpg"/>
+    <name>blim</name>
+    <tizen:privilege name="http://tizen.org/privilege/system"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/drmplay"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network.public"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/drminfo"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/productinfo"/>
+    <tizen:profile name="tv"/>
+</widget>
+```
+
+This file will hold the basic information about the application, what privileges it needs and what features will have.
+
+Failing to add a required privilege will cause the app not to work or behave the way it is not suppose to.
+
+
+###Development Notes
+
+###The Emulator
+The Emulator is a virtual machine running Tizen TV OS. It is a bit slower than an actual TV. Create a new emulator image using the Emulator Manager which comes with the Tizen SDK.
+
+###The Simulator
+The Simulator is a node app much faster than the Emulator, but with less supported functionalities. (Video playback, some key binding...)
+
+###Debugging on the Emulator
+In order to debug an app running on the Emulator or an actual TV, the project needs to be launched form the official SDK, in case you want to debug an app from the TV, the TV needs to be on Developer Mode and configured to use your computer IP address.
+
+[Developer Mode and App Install on TV (PDF)](resources/Install_on_TV.pdf)
