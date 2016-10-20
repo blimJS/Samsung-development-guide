@@ -14,6 +14,8 @@ To develop Tizen TV web apps, you need to install a SDK. You can download a SDK 
 
 To use a GPU accelerator you should install Intel HAXM(Hardware Accelerated Execution), otherwise an emulator will not work properly. During installing a SDK, Intel HAXM should be installed automatically. In case of any errors you can install manually the following file: [HAXM](https://www.samsungdforum.com/guide_static/tizenoverviewguide/_downloads/IntelHaxmTizen_mac.zip).
 
+> The HAXM driver is automatically installed with the IDE, only install it if the emulator does not work.
+
 Emulator runs on a virtual machine (QEMU), none of these are supported (and the Emulator will complain/not work if they are running on the host computer):
 	* Virtual Box
 	* VMWare
@@ -101,8 +103,9 @@ Using key codes requires the following privilege on the config.xml file.
 * Adaptive Streaming
 * 3D Contents, Closed Caption etc…
 
-> [More on AVPlay API](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
+> [AVPlay API Reference](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
 
+> [Sample Code](https://github.com/SamsungDForum/PlayerAVPlayDRM)
 
 > [Official Guide Overview PDF](https://www.samsungdforum.com/guide_static/tizenoverviewguide/_downloads/Essentials_of_Developing_Tizen_Web_Application_EN_1_4(1).pdf)
 
@@ -181,7 +184,37 @@ videoPlay: function (url) {
 }
 ```
 
-> [AVPlay Official Guide](https://www.samsungdforum.com/TizenGuide/tizen3451/index.html)
+To adjust the properties of the streaming you can use __webapis.avplay.setStreamingProperty()__.
+
+```javascript
+webapis.avplay.setStreamingProperty("ADAPTIVE_INFO", params);
+```
+
+This method should be called only on "IDLE" state.
+
+To configure DRM playback, the method __webapis.avplay.setDrm()__ can be used.
+
+This method updates DRM information, such as SetProperties etc. It changes the DRM mode, and runs the Control Feature. Every DRM has difference between AVPlayDrmOperation and jsonParam.
+
+```javascript
+var params = {
+  LicenseServer: 'URL TO LICENSE SERVER',
+  DeleteLicenseAfterUse: true
+};
+
+try {
+    webapis.avplay.setDrm("PLAYREADY", "SetProperties", JSON.stringify(params));
+} catch (e) {
+    //Error
+}
+```
+
+This method should be called on these states - "IDLE" and "PAUSED".
+
+
+>[setStreamingProperty()](https://www.samsungdforum.com/TizenApiGuide/tizen3001/index.html#AVPlay-AVPlayManager-setStreamingProperty)
+
+>[AVPlay Official Guide](https://www.samsungdforum.com/TizenGuide/tizen3451/index.html)
 
 ###CLI Tizen SDK
 
@@ -234,3 +267,102 @@ ___
 >- [App Distribution Guide](http://www.samsungdforum.com/Support/Distribution)
 >- [CLI Dev Tools](https://developer.tizen.org/development/tools/web-tools/command-line-interface)
 >- [Tizen Key Codes](https://www.samsungdforum.com/TizenGuide/tizen3551/index.html)
+>- [Developing for Tizen TV - Article](http://clearbridgemobile.com/lessons-learned-developing-for-tizen-tv/)
+
+
+###Caph
+
+CAPH is a Web UI framework for TVs, it has these modules:
+
+- Key Navigation
+- Scrollable List and Grid
+- UI Components : Button, Radio Button, Toggle Button, Checkbox, Input, Dialog, Context Menu, Dropdown Menu
+- Touch feature : Pan, Tap and Double Tap. (from CAPH 3.1)
+
+Helps developers handle user input from four directional keys on the remote and maximizes the usage of the GPU, since TV devices generally have a far more powerful GPU than CPU.
+
+> Problems: It is not open source and only has versions for jQuery and Angular 1.x.
+
+[Caph Documentation](https://www.samsungdforum.com/caphdocs/)
+
+###Privileges
+
+Privilege level defines access level for the APIs, based on their influence.
+
+There are 3 levels of privilege.
+
+1. __public__ - Everyone can use public privilege, but be careful to use APIs, because these are security-sensitive.
+
+2. __partner__ - Only authorized partners can use APIs.
+
+3. __platform__ - Very security-sensitive. not permitted to Samsung Smart TV
+
+These privileges will be used when configuring the app on the config.xml file.
+
+#####Tizen Device API Privileges
+
+> Privileges which are not in this table are not used in Samsung Tizen Smart TV.
+
+|Privilege|Level|Description|
+|----------|:-------------:|------|
+|http://tizen.org/privilege/alarm | public |The application can set alarms and wake up the device at scheduled times.|
+|http://tizen.org/privilege/application.info | public |The application can retrieve information related to other applications.|
+|http://tizen.org/privilege/application.launch | public |The application can open other applications using the application ID or application control. |
+|http://tizen.org/privilege/appmanager.certificate | partner |The application can retrieve specified application certificates. |
+|http://tizen.org/privilege/appmanager.kill | partner |The application can close other applications. |
+|http://tizen.org/privilege/content.read | public |The application can read media content information. |
+|http://tizen.org/privilege/content.write | public |The application can create, update, and delete media content information. |
+|http://tizen.org/privilege/download | public |The application can manage HTTP downloads. |
+|http://tizen.org/privilege/filesystem.read | public |The application can read file systems. |
+|http://tizen.org/privilege/filesystem.write | public |The application can write to file systems. |
+|http://tizen.org/privilege/package.info | public |The application can retrieve information about installed packages. |
+|http://tizen.org/privilege/packagemanager.install | platform |	The application can install or uninstall application packages. |
+|http://tizen.org/privilege/system | public |The application can read system information. |
+|http://tizen.org/privilege/systemmanager | partner |The application can read secure system information. |
+|http://tizen.org/privilege/tv.audio | public |	The application can control TV audio. |
+|http://tizen.org/privilege/tv.channel | public |The application can control TV channel. |
+|http://tizen.org/privilege/tv.display | public |The application can control TV 3D mode. |
+|http://tizen.org/privilege/tv.inputdevice | public |The application can generate a key event from TV remote control. |
+|http://tizen.org/privilege/tv.window | public |The application can control TV window. (e.g. main windwos, PIP window) |
+|http://tizen.org/privilege/websetting | public |The application can change its Web application settings, including deleting cookies. |
+|http://tizen.org/privilege/datacontrol.consumer | public |Allows the application to access specific data exported by other applications. It is a privilege for a Web application sharing data with other applications. |
+|http://tizen.org/privilege/telephony | public |Allows the application to retrieve telephony information, such as the used network and SIM card, the IMEI, and the call statuses. This privilege is for a native application. |
+|http://tizen.org/privilege/led | public |Allows the application to switch LEDs on and off, such as the LED on the front of the device and the camera flash. This privilege is for a native application. |
+|http://tizen.org/privilege/keymanager | public |Allows the application to save keys, certificates, and data to, and retrieve and delete them from, a password-protected storage.  This privilege is for a native application. |
+
+
+#####Samsung Product API Privileges
+
+> Privileges which are not in this table are not used in Samsung Tizen Smart TV.
+
+|Privilege|Level|Description|
+|----------|:-------------:|------|
+|http://developer.samsung.com/privilege/adstreamingfw | public |The application can use the Adstreaming framework feature. |
+|http://developer.samsung.com/privilege/allshare | public |The application can use the allshare feature. |
+|http://developer.samsung.com/privilege/avplay | public |The application can play multimedia. |
+|http://developer.samsung.com/privilege/drminfo | partner |The application can play DRM encrypted multimedia |
+|http://developer.samsung.com/privilege/network.public | public |The application can read network status and informations. |
+|http://developer.samsung.com/privilege/productinfo | public |The application can read device product related informations (e.g. DUID, model code) |
+|http://developer.samsung.com/privilege/widgetdata | public |The application can read/write widget's secured storage. |
+|http://developer.samsung.com/privilege/microphone | public |The application can use Microphone. |
+|http://developer.samsung.com/privilege/sso.partner | partner |The application can read SSO related informations. |
+|http://developer.samsung.com/privilege/drmplay | public |Allows the application to play the DRM contents. This privilege is for a Web application. |
+|http://developer.samsung.com/privilege/billing | public |Allows the application to use in-app purchase provided by Samsung Checkout on TV. |
+
+#####W3C/HTML5 API Privileges
+
+|Privilege|Level|Description|
+|----------|:-------------:|------|
+|http://tizen.org/privilege/internet | public |The application can access the Internet using the WebSocket,XMLHttpRequest Level 2, Server-Sent Events, HTML5 Application caches, and Cross-Origin Resource Sharing APIs.  |
+|http://tizen.org/privilege/mediacapture | public | The application can manipulate streams from cameras and microphones using the getUserMedia API. |
+|http://tizen.org/privilege/unlimitedstorage | public |In the local domain, if this privilege is defined, permission is granted. Otherwise, pop-up user prompt is used. In the remote domain, pop-up user prompt is used. |
+|http://tizen.org/privilege/notification | public |The application can display simple notifications using the Web Notifications API. |
+|http://tizen.org/privilege/location | public |The application can access geographic locations using the GeolocationAPI. |
+
+#####Web Supplementary API Privileges
+
+|Privilege|Level|Description|
+|----------|:-------------:|------|
+|http://tizen.org/privilege/fullscreen | public |Allows the application to display in full-screen mode using the FullScreen API (Mozilla). |
+
+> [Privilege Reference](https://www.samsungdforum.com/TizenGuide/tizen3431/index.html)
