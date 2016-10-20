@@ -291,7 +291,9 @@ Privilege level defines access level for the APIs, based on their influence.
 
 There are 3 levels of privilege.
 1. __public__ - Everyone can use public privilege, but be careful to use APIs, because these are security-sensitive.
+
 2. __partner__ - Only authorized partners can use APIs.
+
 3. __platform__ - Very security-sensitive. not permitted to Samsung Smart TV
 
 #####Tizen Device API Privileges
