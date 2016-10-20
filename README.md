@@ -297,6 +297,8 @@ There are 3 levels of privilege.
 
 3. __platform__ - Very security-sensitive. not permitted to Samsung Smart TV
 
+These privileges will be used when configuring the app on the config.xml file.
+
 #####Tizen Device API Privileges
 
 > Privileges which are not in this table are not used in Samsung Tizen Smart TV.
