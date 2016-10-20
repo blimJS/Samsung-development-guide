@@ -1,0 +1,28 @@
+# Application
+cache.properties
+/module/Core
+
+# IDE
+/nbproject/
+/.buildpath
+/.project
+/.settings/
+/.idea/
+/.buildpath
+/tags
+/tags.vendor
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Folder configuration files
+.DS_Store
+Desktop.ini
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Other files
+.~lock.*
