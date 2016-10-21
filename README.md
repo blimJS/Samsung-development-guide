@@ -407,8 +407,30 @@ This file will hold the basic information about the application, what privileges
 
 Failing to add a required privilege will cause the app not to work or behave the way it is not suppose to.
 
+###Architecture & Application Life Cycle
+####Tizen Architecture
+![alt text][arch]
+[arch]: https://www.samsungdforum.com/guide_static/tizenintroduction/_images/Tizen_Arch.jpg
+"Tizen Architecture"
 
-###Development Notes
+Samsung has created a customized wrapper over Tizen platform to facilitate development of Tizen TV apps. Tizen apps have a defined lifecycle which is handled by the Core component of Tizen Platform as shown in the Tizen Architecture above. Application Lifecycle can be visualized as shown below:
+
+####Application Life Cycle
+![alt text][alc]
+[alc]: https://www.samsungdforum.com/guide_static/tizenintroduction/_images/App_lifecycle.jpg "Application Life Cycle"
+
+When any app is launched then application main loop is created, which is responsible for all the app states.
+
+1. __Ready__ means app has been launched by the user and main loop is created.
+2. __Create__ means app has been initialized and an instance is created for use.
+3. __Reset__ means app has re-launch request.
+4. __Running__ means app is active on device and responding to all the events received.
+5. __Pause__ means app has been suspended by hiding the application window. Upon resume app comes back in running state, and the previous scene is recovered. With the help of this feature Tizen provides multitasking in the devices.
+6. __Resume__ means the suspended app has been resumed and the application window becomes visible.
+7. __Terminated__ means after the execution of the main loop terminate the application.
+
+For more details refer to the [ App Lifecycle](https://developer.tizen.org/documentation/articles/application-fundamentals-developer-guide?langswitch=en#appLifeCycle) reference page.
+##Development Notes
 
 ###The Emulator
 The Emulator is a virtual machine running Tizen TV OS. It is a bit slower than an actual TV. Create a new emulator image using the Emulator Manager which comes with the Tizen SDK.
