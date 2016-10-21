@@ -410,14 +410,14 @@ Failing to add a required privilege will cause the app not to work or behave the
 ###Architecture & Application Life Cycle
 ####Tizen Architecture
 ![alt text][arch]
-[arch]: https://www.samsungdforum.com/guide_static/tizenintroduction/_images/Tizen_Arch.jpg
+[arch]: resources/Tizen_Arch.jpg
 "Tizen Architecture"
 
 Samsung has created a customized wrapper over Tizen platform to facilitate development of Tizen TV apps. Tizen apps have a defined lifecycle which is handled by the Core component of Tizen Platform as shown in the Tizen Architecture above. Application Lifecycle can be visualized as shown below:
 
 ####Application Life Cycle
 ![alt text][alc]
-[alc]: https://www.samsungdforum.com/guide_static/tizenintroduction/_images/App_lifecycle.jpg "Application Life Cycle"
+[alc]: resources/App_lifecycle.jpg "Application Life Cycle"
 
 When any app is launched then application main loop is created, which is responsible for all the app states.
 
