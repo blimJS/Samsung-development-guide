@@ -441,4 +441,7 @@ The Simulator is a node app much faster than the Emulator, but with less support
 ###Debugging on the Emulator
 In order to debug an app running on the Emulator or an actual TV, the project needs to be launched form the official SDK, in case you want to debug an app from the TV, the TV needs to be on Developer Mode and configured to use your computer IP address.
 
+###Tizen IDE and Minified Code
+When minifying your code and building the application package (.wgt => Which is just a zip file) the IDE takes a lot of time "validating" your code (with a simple app in React built with Webpack it takes like 12 minutes!), I have found no way to prevent this, so you'll have to endure the first build and after that every time you modify your build, just Run/Debug your app without rebuilding the package.
+
 [Developer Mode and App Install on TV (PDF)](resources/Install_on_TV.pdf)
