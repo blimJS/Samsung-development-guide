@@ -27,6 +27,8 @@ All apps must be signed with an author certificate. It is used to identify an ap
 _Follow this guide to generate the certificate:_
 [https://www.samsungdforum.com/TizenGuide/tizen3531/index.html](https://www.samsungdforum.com/TizenGuide/tizen3531/index.html)
 
+[Certificate Guide(PDF)](resources/CertificateGuide.pdf)
+
 After creating the author certificate, be careful not to lose it. This is the unique proof for certifying app developer. If you lose it, you can’t version up your app.
 
 ####UI/UX Requirements
@@ -260,7 +262,8 @@ ___
 >- [Platform Features](https://www.samsungdforum.com/Tizen/Spec#GeneralFeatures)
 >- [W3C/HTML5 API Reference](https://www.samsungdforum.com/TizenApiGuide/tizen851/index.html)
 >- [Setting Project Properties ](https://developer.tizen.org/ko/development/getting-started/web-application/application-development-process/setting-project-properties?langredirect=1#set_widget)
->- [Examples on GitHub](https://github.com/Samsung/TizenTVApps)
+>- [Examples on GitHub from Samsung](https://github.com/Samsung/TizenTVApps)
+>- [Examples on GitHub from SamsungDForum](https://github.com/SamsungDForum/)
 >- [APIs Reference](https://developer.tizen.org/development/api-references/web-application)
 >- [AVPlay Reference](https://www.samsungdforum.com/tizenapiguide/tizen3001/index.html)
 >- [Caph - Focus handling for Angular and jQuery](https://www.samsungdforum.com/AddLibrary/CaphSdkDownload)
@@ -366,3 +369,79 @@ These privileges will be used when configuring the app on the config.xml file.
 |http://tizen.org/privilege/fullscreen | public |Allows the application to display in full-screen mode using the FullScreen API (Mozilla). |
 
 > [Privilege Reference](https://www.samsungdforum.com/TizenGuide/tizen3431/index.html)
+
+###Application Configuration File
+Each application developed for Tizen will require a configuration file (config.xml) on the root path of the app.
+
+Example:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://www.blim.com" version="1.0.0" viewmodes="maximized">
+    <tizen:allow-navigation>*</tizen:allow-navigation>
+    <tizen:application id="NgUSbxuJwx.blim" package="NgUSbxuJwx" required_version="2.3"/>
+    <content src="dist/index.html"/>
+    <tizen:content-security-policy>*</tizen:content-security-policy>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <feature name="http://www.samsungdforum.com/feature/Mouse"/>
+    <feature name="http://tizen.org/privilege/application.read" required="true"/>
+    <icon src="icon.jpg"/>
+    <name>blim</name>
+    <tizen:privilege name="http://tizen.org/privilege/system"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/drmplay"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network.public"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/drminfo"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/productinfo"/>
+    <tizen:profile name="tv"/>
+</widget>
+```
+
+This file will hold the basic information about the application, what privileges it needs and what features will have.
+
+Failing to add a required privilege will cause the app not to work or behave the way it is not suppose to.
+
+###Architecture & Application Life Cycle
+####Tizen Architecture
+![alt text][arch]
+[arch]: resources/Tizen_Arch.jpg
+"Tizen Architecture"
+
+Samsung has created a customized wrapper over Tizen platform to facilitate development of Tizen TV apps. Tizen apps have a defined lifecycle which is handled by the Core component of Tizen Platform as shown in the Tizen Architecture above. Application Lifecycle can be visualized as shown below:
+
+####Application Life Cycle
+![alt text][alc]
+[alc]: resources/App_lifecycle.jpg "Application Life Cycle"
+
+When any app is launched then application main loop is created, which is responsible for all the app states.
+
+1. __Ready__ means app has been launched by the user and main loop is created.
+2. __Create__ means app has been initialized and an instance is created for use.
+3. __Reset__ means app has re-launch request.
+4. __Running__ means app is active on device and responding to all the events received.
+5. __Pause__ means app has been suspended by hiding the application window. Upon resume app comes back in running state, and the previous scene is recovered. With the help of this feature Tizen provides multitasking in the devices.
+6. __Resume__ means the suspended app has been resumed and the application window becomes visible.
+7. __Terminated__ means after the execution of the main loop terminate the application.
+
+For more details refer to the [ App Lifecycle](https://developer.tizen.org/documentation/articles/application-fundamentals-developer-guide?langswitch=en#appLifeCycle) reference page.
+##Development Notes
+
+###The Emulator
+The Emulator is a virtual machine running Tizen TV OS. It is a bit slower than an actual TV. Create a new emulator image using the Emulator Manager which comes with the Tizen SDK.
+
+###The Simulator
+The Simulator is a node app much faster than the Emulator, but with less supported functionalities. (Video playback, some key binding...)
+
+###Debugging on the Emulator
+In order to debug an app running on the Emulator or an actual TV, the project needs to be launched form the official SDK, in case you want to debug an app from the TV, the TV needs to be on Developer Mode and configured to use your computer IP address.
+
+###Tizen IDE and Minified Code
+When minifying your code and building the application package (.wgt => Which is just a zip file) the IDE takes a lot of time "validating" your code (with a simple app in React built with Webpack it takes like 12 minutes!), I have found no way to prevent this, so you'll have to endure the first build and after that every time you modify your build, just Run/Debug your app without rebuilding the package.
+
+[Developer Mode and App Install on TV (PDF)](resources/Install_on_TV.pdf)
