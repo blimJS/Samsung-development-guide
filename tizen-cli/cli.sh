@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION="0.1"
-echo ${0##*/}
+
 #Change output color to green.
 setSuccessColor ()
 {
