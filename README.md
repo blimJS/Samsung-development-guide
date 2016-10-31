@@ -257,8 +257,9 @@ __Install package__
 tizen install --target emulator-26101 --name blimcli.wgt -- /Users/keiverh/workspace/blimcli/.buildResult
 ```
 
-> According to Samsung Development Forums, there is no SHELL access to the Emulator or devices on regular TVs.
+> According to Samsung Development Forums, there is no SHELL access to the Emulator or regular TVs.
 > [Forum Post](https://www.samsungdforum.com/SamsungDForum/ForumView/180241c0163b926c?forumID=761e4dd8743457be)
+>
 > [Stackoverflow Question](http://stackoverflow.com/questions/38308306/how-to-install-apps-on-samsung-tizen-tv-from-command-line)
 
 ___
