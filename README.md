@@ -36,7 +36,7 @@ Samsung Smart TV provides a user experience that differs completely from that of
 
 #####General Considerations:
 ![alt text][tv]
-[tv]: https://www.samsungdforum.com/guide_static/tizenuxguide/img_01_01_tv_viewing.png "TV Use"
+[tv]: resources/tv.png "TV Use"
 
 * The average distance between a TV and its viewers is 3 meters (10ft).
 * The standard remote control is the main input method.
@@ -116,7 +116,7 @@ Using key codes requires the following privilege on the config.xml file.
 ####AVPlay Object Lifecycle
 
 ![alt text][cycle]
-[cycle]: https://www.samsungdforum.com/guide_static/tizenguide/_images/AVPlay_state.jpg "AVPlay Object Lifecycle"
+[cycle]: resources/lifecycle.jpeg "AVPlay Object Lifecycle"
 
 ####Adaptive Streaming
 AVPlay module of Samsung Tizen TV supports adaptive streaming playing. DASH, HLS, Smooth Streaming are supported in Samsung Tizen TV. It enables user to change bitrate during playback.
